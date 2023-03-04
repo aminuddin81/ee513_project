@@ -96,20 +96,6 @@ public:
         writeRegister(0x0A, mask);
 
         std::cout << "Alarm 1 set for every day at 6 PM." << std::endl;
-
-        // Continuously check for Alarm 1 trigger
-        /**while (true) {
-            uint8_t status = readRegister(0x0F);
-            if ((status & 0x01) != 0) {
-                std::cout << "Alarm 1 triggered!" << std::endl;
-
-                // Clear the Alarm 1 flag
-                writeRegister(0x0F, status & ~0x01);
-            }
-
-            // Wait for 1 second before checking again
-            usleep(1000000);
-        }**/
     }
 
     // Set the alarm2
@@ -132,20 +118,6 @@ public:
         writeRegister(0x0D, mask);
 
         std::cout << "Alarm 2 set for trigger once per day at 12:30 PM." << std::endl;
-
-        // Continuously check for Alarm 2 trigger
-        /**while (true) {
-            uint8_t status = readRegister(0x0F);
-                if ((status & 0x02) != 0) {
-                    std::cout << "Alarm 2 triggered!" << std::endl;
-
-                    // Clear the Alarm 2 flag
-                    writeRegister(0x0F, status & ~0x02);
-                    }
-
-            // Wait for 1 second before checking again
-            usleep(1000000);
-        }**/
     }
 
     void read_alarm1() {
@@ -220,46 +192,30 @@ public:
 
 int main() {
     RTC rtc(2, 0x68); // Create an object of RTC class
-    
+
     // Set the square wave frequency to 4096 Hz
     rtc.set_SquareWaveFrequency(rtc, FREQ_4096HZ);
     usleep(1000000);
     
-    return 0;
-}
-
-    //cout << "Temperature is: " << rtc.get_temperature() << " degrees Celsius" << endl;  // read current temperature of RTC
-    /**rtc.set_alarm1();
-    usleep(1000000);
-    rtc.read_alarm1();
-
-    rtc.set_alarm2();
-    usleep(1000000);
-    rtc.read_alarm2();**/
-
-    /**rtc.set_dateTime();  // set date&time to RTC register
-    //usleep(1000000);
     //rtc.get_dateTime(); // read date&time from RTC register
-       
-    //rtc.set_alarm1();   // Set the alarm1 to trigger at 6 pm
-    **/
-    /**
+    //cout << "Temperature is: " << rtc.get_temperature() << " degrees Celsius" << endl;  // read current temperature of RTC
+    //rtc.set_dateTime();  // set date&time to RTC register
+    /*rtc.set_alarm1();   // set alarm 1
     // Continuously check for Alarm 1 trigger
-        //while (true) {
-            //uint8_t status = rtc.readRegister(0x0F);
-            //if ((status & 0x01) != 0) {
-                //std::cout << "Alarm 1 triggered!" << std::endl;
+        while (true) {
+            uint8_t status = rtc.readRegister(0x0F);
+            if ((status & 0x01) != 0) {
+                std::cout << "Alarm 1 triggered!" << std::endl;
 
                 // Clear the Alarm 1 flag
-                //rtc.writeRegister(0x0F, status & ~0x01);
-            //}
+                rtc.writeRegister(0x0F, status & ~0x01);
+            }
 
             // Wait for 1 second before checking again
-            //usleep(1000000);
-        //}**/
-    
-    //rtc.set_alarm2();   // Set the alarm2
-    /**rtc.set_alarm2();  // set alarm 2
+            usleep(1000000);
+        }*/
+    /*
+    rtc.set_alarm2();  // set alarm 2
     // Continuously check for Alarm 2 trigger
         while (true) {
             uint8_t status = rtc.readRegister(0x0F);
@@ -272,10 +228,16 @@ int main() {
 
             // Wait for 1 second before checking again
             usleep(1000000);
-        }**/
-    // Set the square wave frequency to 4096 Hz
-    //set_SquareWaveFrequency(rtc, FREQ_4096HZ);
+        }*/
 
-    // Wait for 1 second before exiting
-    //usleep(1000000);
-    //rtc.read_alarm2();  // read alarm 2 settings
+    //rtc.read_alarm1();    // read alarm 1 settings
+    //rtc.read_alarm2();   // read alarm 2 settings
+
+    /*
+    // Set the square wave frequency to 4096 Hz
+    rtc.set_SquareWaveFrequency(rtc, FREQ_4096HZ);
+    usleep(1000000);*/
+    
+    return 0;
+}
+
